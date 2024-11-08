@@ -1,0 +1,21 @@
+name: Issue accepted
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  issue_accepted:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Merge main into test
+      uses: mtanzi/action-automerge@v1
+      id: merge-main-into-test
+      with:
+        github_token: ${{ github.token }}
+        source: 'main'
+        target: 'test'
